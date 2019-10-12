@@ -1,11 +1,13 @@
 {
-  "name": "AppsPackExample2",
+  "name": "r_basics_10702",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "gas": "webpack --config webpack.gas.js ",
-    "deploy": "npm run gas && cd dist && clasp push && clasp open --webapp"
+    "clean": "rm -rf dist",
+    "build": "npm run clean && webpack --config webpack.gas.js ",
+    "deploy": "npm run build && cd dist && clasp push",
+    "open": "clasp open --webapp \"AKfycbxUTLpb-V36JnPM_dGj8X3r8E5HhG0PXGhI7YhLpcA\""
   },
   "keywords": [],
   "author": "",
@@ -15,6 +17,8 @@
     "@babel/preset-env": "^7.4.2",
     "babel-loader": "^8.0.5",
     "copy-webpack-plugin": "^5.0.1",
+    "eslint": "^6.5.1",
+    "eslint-config-google": "^0.14.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   },
