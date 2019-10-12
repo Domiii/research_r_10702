@@ -6,7 +6,7 @@ module.exports = {
   target: 'web', // default == 'web'
   devtool: 'source-map',
   entry: {
-    Global: './server/Global.js'
+    Global: './src/Global.js'
   },
   output:
   {
@@ -39,7 +39,7 @@ module.exports = {
   },
   plugins: [
     new CopyPlugin([
-      'server/api.gs',
+      'src/api.gs',
       'appsscript.json',
       '.clasp.json'
     ])
