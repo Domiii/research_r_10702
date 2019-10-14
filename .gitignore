@@ -1,5 +1,9 @@
 .clasp.json
-dist
+gs/dist
+
+# Python
+__pycache__
+py/_files/**
 
 # Logs
 logs
