@@ -1,5 +1,6 @@
 {
   "eslint.enable": true,
   "editor.detectIndentation": false,
-  "python.formatting.yapfPath": "yapf --style='{based_on_style: chromium, indent_width: 2}'"
+  "python.pythonPath": "~/.virtualenvs/r_basics_10702/bin/python",
+  "python.linting.pylintEnabled": true
 }
