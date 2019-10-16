@@ -9,6 +9,9 @@ import sys
 # this is a pointer to this module object instance
 this = sys.modules[__name__]
 
+CredentialsJson = 'cfg/credentials.json'
+TokenPickle = 'cfg/token.pickle'
+
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = [
   'https://www.googleapis.com/auth/drive.metadata.readonly',
@@ -18,7 +21,7 @@ SCOPES = [
 # see: https://stackoverflow.com/questions/1977362/how-to-create-module-wide-variables-in-python
 this.service = None
 
-def getOrCreateService(forceNew = False):
+def getOrCreateService(forceNew=False):
   """Shows basic usage of the Drive v3 API.
   Prints the names and ids of the first 10 files the user has access to.
   """
@@ -29,8 +32,8 @@ def getOrCreateService(forceNew = False):
   # The file token.pickle stores the user's access and refresh tokens, and is
   # created automatically when the authorization flow completes for the first
   # time.
-  if os.path.exists('token.pickle'):
-    with open('token.pickle', 'rb') as token:
+  if os.path.exists(TokenPickle):
+    with open(TokenPickle, 'rb') as token:
       creds = pickle.load(token)
 
   # If there are no (valid) credentials available, let the user log in.
@@ -38,11 +41,10 @@ def getOrCreateService(forceNew = False):
     if creds and creds.expired and creds.refresh_token:
       creds.refresh(Request())
     else:
-      flow = InstalledAppFlow.from_client_secrets_file(
-        'credentials.json', SCOPES)
+      flow = InstalledAppFlow.from_client_secrets_file(CredentialsJson, SCOPES)
       creds = flow.run_local_server(port=0)
       # Save the credentials for the next run
-      with open('token.pickle', 'wb') as token:
+      with open(TokenPickle, 'wb') as token:
         pickle.dump(creds, token)
 
   this.service = build('drive', 'v3', credentials=creds)

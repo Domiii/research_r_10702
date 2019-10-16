@@ -3,4 +3,6 @@ disable=
     bad-indentation,
     missing-docstring,
     invalid-name,
-    line-too-long
+    line-too-long,
+    bad-continuation,
+    trailing-whitespace

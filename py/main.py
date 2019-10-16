@@ -5,6 +5,7 @@ from os import path
 
 from gutil import getFilesInFolder, exportFileCsv
 # from drive import getOrCreateService
+from analysis import analyze
 
 csvFolder = f'{path.dirname(__file__)}/_files'
 
@@ -27,13 +28,17 @@ def exportFiles(files):
 def main():
   # service = getOrCreateService()
 
-  # Query files from drive
-  # https://drive.google.com/drive/u/0/folders/16SQCIy97DRDsRAhpKBilbMh8hlazQAhZ
-  driveFolderId = '16SQCIy97DRDsRAhpKBilbMh8hlazQAhZ'
-  files = getFilesInFolder(driveFolderId, mimeType='application/vnd.google-apps.spreadsheet')
+  if not path.exists(csvFolder):
+    # Query files from drive
+    # https://drive.google.com/drive/u/0/folders/16SQCIy97DRDsRAhpKBilbMh8hlazQAhZ
+    driveFolderId = '16SQCIy97DRDsRAhpKBilbMh8hlazQAhZ'
+    files = getFilesInFolder(driveFolderId, mimeType='application/vnd.google-apps.spreadsheet')
 
-  # export files
-  exportFiles(files)
+    # export files
+    exportFiles(files)
+
+  # do the analysis
+  analyze(csvFolder)
 
 
 if __name__ == '__main__':
